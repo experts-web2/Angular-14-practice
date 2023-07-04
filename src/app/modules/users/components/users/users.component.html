@@ -1,0 +1,79 @@
+<app-description-bar
+  [heading]="heading"
+  [description]="description"
+  (onModeChange)="changeGridView($event)"
+></app-description-bar>
+
+<app-user-card
+  *ngIf="selectedView === appConstants.CARD && users.length"
+  [users]="users"
+></app-user-card>
+
+<mat-card
+  class="table-card"
+  *ngIf="selectedView === appConstants.LIST && users.length"
+>
+  <mat-card-header>
+    <mat-card-title>
+      <div class="table-card__select">
+        Show
+        <select
+          class="table-card__select__field"
+          (change)="showEntries($event)"
+        >
+          <option value="All">All</option>
+          <option
+            *ngFor="
+              let enteries of filterEnterties(filteredUsers.length);
+              let i = index
+            "
+            value="{{ i + 1 }}"
+          >
+            {{ i + 1 }}
+          </option>
+        </select>
+        Entries
+      </div>
+      <div class="table-card__search">
+        <mat-form-field>
+          <span matPrefix>
+            <mat-icon matSuffix>search</mat-icon>
+          </span>
+          <input
+            placeholder=""
+            (keyup)="search($event)"
+            matInput
+            class="table-card__search__field"
+          />
+        </mat-form-field>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <div class="table-scroll">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <img class="user-profile-pic" [src]="element.image" height="40" />
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">
+          <span> {{ element.name }}</span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+      <ng-container matColumnDef="website">
+        <th mat-header-cell *matHeaderCellDef>Website</th>
+        <td mat-cell *matCellDef="let element">{{ element.website }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</mat-card>
+<p *ngIf="!users.length"><b>No User Record Found</b></p>

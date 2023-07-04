@@ -1,0 +1,39 @@
+<app-description-bar
+  [heading]="heading"
+  [description]="description"
+></app-description-bar>
+<div class="blog-wraper">
+  <mat-card *ngFor="let blog of blogPosts">
+    <div class="blog">
+      <div class="blog__image-wrapper">
+        <img
+          class="blog__image-wrapper__pic"
+          src="https://i.postimg.cc/VkyxR1Zd/why-blog.jpg"
+        />
+      </div>
+      <div class="card-description">
+        <h2 class="card-description__title" [title]="blog.title">
+          {{ formatService.titleFormat(blog.title) | titlecase }}
+        </h2>
+        <p class="card-description__detail">
+          {{ blog.description }}
+        </p>
+        <a class="card-description__link">Read More</a>
+        <div class="card-description__icon-wrapper">
+          <p class="card-description__icon-wrapper__item">
+            <mat-icon class="card-description__icon-wrapper__item__icon"
+              >access_time</mat-icon
+            >
+            04 july 2023
+          </p>
+          <p class="card-description__icon-wrapper__item">
+            <mat-icon class="card-description__icon-wrapper__item__icon"
+              >person_outline</mat-icon
+            >
+            Alex Paul
+          </p>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

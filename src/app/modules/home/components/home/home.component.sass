@@ -1,0 +1,50 @@
+
+.ma-pa
+    background-color: white
+    padding-top: 50px
+
+.recent-blogs
+    background-color: whitesmoke
+    margin: 50px
+    padding: 10px
+
+    h3
+        font-size: 1rem
+        padding: 10px 0px 20px 10px
+        border-bottom: 1px solid gray
+        margin-bottom: 0px
+        font-weight: 700
+
+        i
+            margin-right: 10px
+
+    .wrapper
+        display: grid
+        grid-template-columns: repeat(4, 1fr)
+        grid-template-rows: auto
+        grid-gap: 10px
+
+        @media screen and (max-width:767px)
+            grid-template-columns: 100%
+            grid-template-rows: auto
+
+        @media screen and (max-width:1024px)
+            grid-template-columns: repeat(2, 1fr)
+            grid-template-rows: auto
+            grid-gap: 10px
+
+        .mat-card
+            background-color: white
+            border: none
+            padding: 30px 20px
+
+            h2
+                font-size: 1rem
+                margin-top: 1rem
+
+            img
+                width: 50%
+
+            p
+                margin: 1rem 0rem 0rem 0rem
+                font-size: 0.75rem

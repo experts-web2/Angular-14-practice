@@ -1,0 +1,36 @@
+<app-description-bar
+  [heading]="heading"
+  [description]="description"
+></app-description-bar>
+<div class="featured-card-wrapper">
+  <mat-card class="feature-card" *ngFor="let dasbhboard of dashboardDetails">
+    <mat-card-header>
+      <mat-card-title>
+        <div class="mat-card-title-icon">
+          <mat-icon>{{ dasbhboard.icon }}</mat-icon>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="mat-card-title">
+        {{ dasbhboard.price }}
+      </div>
+      <div class="mat-card-subtitle">
+        {{ dasbhboard.title }}
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<mat-card>
+  <app-description-bar [heading]="'Recent Blogs'"></app-description-bar>
+  <mat-card-content fxFlex>
+    <div class="blog-post" *ngFor="let post of recentBlogPosts">
+      <img mat-card-image [src]="post.image" alt="Photo of {{ post.title }}" />
+      <h2 class="blog-post__title">{{ post.title | titlecase }}</h2>
+      <p class="blog-post__detail">
+        {{ post.description | titlecase }}
+      </p>
+    </div>
+  </mat-card-content>
+</mat-card>

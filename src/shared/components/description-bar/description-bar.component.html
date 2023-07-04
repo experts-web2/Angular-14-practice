@@ -1,0 +1,26 @@
+<mat-card class="page-title-bar">
+  <mat-card-header>
+    <mat-card-title>
+      <div class="card-title">
+        <mat-icon class="mat-card-title-icon">widgets</mat-icon>{{ heading }}
+      </div>
+      <mat-button-toggle-group *ngIf="heading === appConstants.USERS">
+        <mat-button-toggle
+          [ngClass]="defaultView === appConstants.LIST ? 'active' : ''"
+          value="bold"
+          (click)="changeView(appConstants.LIST)"
+        >
+          <mat-icon>view_list</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle
+          value="italic"
+          [ngClass]="defaultView === appConstants.CARD ? 'active' : ''"
+          (click)="changeView(appConstants.CARD)"
+        >
+          <mat-icon>view_module</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-card-title>
+    <mat-card-subtitle *ngIf="description">{{ description }}</mat-card-subtitle>
+  </mat-card-header>
+</mat-card>

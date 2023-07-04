@@ -1,5 +1,68 @@
-<app-header></app-header>
-<app-side-nav></app-side-nav>
+<div class="container-fluid">
+  <mat-toolbar color="primary" class="header">
+    <div class="togle-btn-container">
+      <mat-icon class="togle-btn" (click)="drawer.toggle()">reorder</mat-icon>
 
-
-<router-outlet></router-outlet>
+      <h1 class="example-app-name">{{ title | uppercase }}</h1>
+    </div>
+    <div class="notification-wrapper">
+      <mat-icon matBadge="15" matBadgeColor="warn">notifications_none</mat-icon>
+      <div class="user-profile">
+        <div class="user-profile-pic"></div>
+        <div class="user-profile-name">AP</div>
+      </div>
+    </div>
+  </mat-toolbar>
+  <mat-drawer-container autosize>
+    <mat-drawer
+      #drawer
+      class="sidenav"
+      mode="side"
+      [opened]="sidebarToggle"
+      id="sidenav"
+    >
+      <h2 class="sidenav__title">Menu</h2>
+      <ul class="sidenav__menu-bar">
+        <li class="sidenav__menu-bar__item">
+          <a
+            routerLink="/home"
+            class="sidenav__menu-bar__item__link"
+            routerLinkActive="active"
+          >
+            <mat-icon class="sidenav__menu-bar__item__link__icon"
+              >widgets</mat-icon
+            >
+            Home
+          </a>
+        </li>
+        <li class="sidenav__menu-bar__item">
+          <a
+            routerLink="/users"
+            class="sidenav__menu-bar__item__link"
+            routerLinkActive="active"
+          >
+            <mat-icon class="sidenav__menu-bar__item__link__icon"
+              >widgets</mat-icon
+            >
+            Users
+          </a>
+        </li>
+        <li class="sidenav__menu-bar__item">
+          <a
+            routerLink="/blogs"
+            class="sidenav__menu-bar__item__link"
+            routerLinkActive="active"
+          >
+            <mat-icon class="sidenav__menu-bar__item__link__icon"
+              >widgets</mat-icon
+            >
+            Blogs
+          </a>
+        </li>
+      </ul>
+    </mat-drawer>
+    <div class="example-sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+</div>

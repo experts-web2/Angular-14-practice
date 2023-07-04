@@ -1,7 +1,5 @@
 export const applicationRoutesConstants = {
-    home: 'home',
-    users:'users',
-    blogs:'blogs'
-
-  };
-  
+  home: 'home',
+  users: 'users',
+  blogs: 'blogs',
+};

@@ -1,0 +1,15 @@
+<div class="main-wraper" *ngIf="users?.length">
+  <mat-card class="user-card" *ngFor="let user of users">
+    <div class="circle">
+      <img
+        class="circle__img"
+        [src]="user.image"
+        onerror="this.src='./assets/images/default_user.png'"
+      />
+    </div>
+    <div class="paper"><mat-icon class="paper__icon">send</mat-icon></div>
+    <h2 class="user-card__title">{{ user.name }}</h2>
+    <p class="user-card__detail">{{ user.website }}</p>
+  </mat-card>
+</div>
+<p *ngIf="!users.length"><b>No User Found</b></p>
