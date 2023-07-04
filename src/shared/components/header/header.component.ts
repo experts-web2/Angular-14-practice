@@ -5,7 +5,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
-
+  title = 'NIBRAS';
+  
   constructor() { }
 
   ngOnInit(): void {

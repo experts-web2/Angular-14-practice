@@ -89,7 +89,7 @@ const SHARED_MODULES = [
   MatTreeModule,
   OverlayModule,
   PortalModule,
-  ScrollingModule
+  ScrollingModule,
 ];
 
 @NgModule({

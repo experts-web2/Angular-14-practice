@@ -5,18 +5,7 @@ import { AfterContentInit, Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent implements AfterContentInit {
-  title = 'angular-14-practise';
-
-  sidebarToggle: boolean = true;
+export class AppComponent {
 
   constructor() { }
-
-  ngAfterContentInit() {
-    this.adjustWindowSize()
-  }
-
-  adjustWindowSize() {
-    this.sidebarToggle = window.innerWidth <= 768 ? false : true;
-  }
 }

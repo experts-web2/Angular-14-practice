@@ -1,4 +1,4 @@
-@import "/src/assets/styles/color.scss"
+@import "/src/styles/application-colors.sass"
 .blog-wraper
   display: grid
   grid-template-columns: repeat(2, 1fr)
@@ -60,29 +60,31 @@
           height: 150px
           overflow: hidden
           text-overflow: ellipsis
-  &
-    height: 100px
+        &
+          height: 100px
 
-    &__link
-      font-weight: 400
-      font-size: 16px
-      line-height: 19px
-      text-decoration-line: underline
-      color: $primary-color
+        &__link
+          font-weight: 400
+          font-size: 16px
+          line-height: 19px
+          text-decoration-line: underline
+          color: $primary-color
 
-      &__icon-wrapper
-        display: flex
-        align-items: center
-        justify-content: space-between
-        margin-top: 20px
+        &__icon-wrapper
+           display: flex
+           align-items: center
+           justify-content: space-between
+           margin-top: 20px
 
-        &__item
-          margin: 0
-          display: flex
-          align-items: center
+           &__item
+              margin: 0
+              display: flex
+              align-items: center
+              color: $black-color
 
-          &__icon
-            margin-right: 10px
+           &__icon
+              margin-left: 10px
+              color: $black-color
 
 .content-wraper
   display: grid

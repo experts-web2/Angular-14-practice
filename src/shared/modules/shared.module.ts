@@ -1,20 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MaterialModule } from './material.module';
-import { HeaderComponent } from '../components/header/header.component';
-import { SideNavComponent } from '../components/side-nav/side-nav.component';
 import { DescriptionBarComponent } from '../components/description-bar/description-bar.component';
+import { HeaderComponent } from '../components/header/header.component';
 import { DataService } from '../services/data.service';
 import { FormatingService } from '../services/formating.service';
 import { ImageService } from '../services/image.service';
+import { MaterialModule } from './material.module';
 
 const SHARED_MODULES = [MaterialModule, CommonModule, HttpClientModule];
-const SHARED_COMPONENTS = [
-  HeaderComponent,
-  SideNavComponent,
-  DescriptionBarComponent,
-];
+const SHARED_COMPONENTS = [HeaderComponent, DescriptionBarComponent];
 
 @NgModule({
   declarations: [SHARED_COMPONENTS],

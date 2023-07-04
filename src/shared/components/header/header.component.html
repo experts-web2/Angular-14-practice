@@ -1,6 +1,13 @@
-<div>
-    <div class="header align-ment">
-        <h1>LoremIpsum</h1>
-        <div class="align-ment"><mat-icon class="notification">notifications</mat-icon> <div class="profile"></div></div>
+<mat-toolbar class="header">
+    <div class="togle-btn-container">
+
+      <h1 class="example-app-name">{{ title | uppercase }}</h1>
     </div>
-</div>
+    <div class="notification-wrapper">
+      <mat-icon class="notification-icon">notifications_none</mat-icon>
+      <div class="user-profile">
+        <div class="user-profile-pic"></div>
+        <div class="user-profile-name">AP</div>
+      </div>
+    </div>
+  </mat-toolbar>
