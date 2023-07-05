@@ -3,24 +3,27 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatTableDataSource } from '@angular/material/table';
 import { of } from 'rxjs';
 import { DescriptionBarComponent } from 'src/shared/components/description-bar/description-bar.component';
-import { DataService } from 'src/shared/services/data.service';
+import { BlogService } from 'src/shared/services/blogs.service';
 import { ImageService } from 'src/shared/services/image.service';
 import { UsersComponent } from './users.component';
+import { UserService } from 'src/shared/services/users.service';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
   let fixture: ComponentFixture<UsersComponent>;
-  let dataServiceMock: jasmine.SpyObj<DataService>;
+  let dataServiceMock: jasmine.SpyObj<BlogService>;
+  let userServiceMock: jasmine.SpyObj<UserService>;
+
   let imageServiceMock: jasmine.SpyObj<ImageService>;
 
   beforeEach(async () => {
-    dataServiceMock = jasmine.createSpyObj('DataService', ['users']);
+    userServiceMock = jasmine.createSpyObj('UserService', ['users']);
     imageServiceMock = jasmine.createSpyObj('ImageService', [
       'randomUsersAvatar',
     ]);
     await TestBed.configureTestingModule({
       declarations: [UsersComponent, DescriptionBarComponent],
-      providers: [DataService],
+      providers: [BlogService],
       imports: [HttpClientTestingModule],
     }).compileComponents();
 
@@ -49,7 +52,7 @@ describe('UsersComponent', () => {
 
     const randomAvatar = 'https://i.ibb.co/8gT1pZ2/cd.jpg';
 
-    dataServiceMock.users.and.returnValue(of(users));
+    userServiceMock.users.and.returnValue(of(users));
     imageServiceMock.randomUsersAvatar.and.returnValue([randomAvatar]);
 
     component.getUsers();

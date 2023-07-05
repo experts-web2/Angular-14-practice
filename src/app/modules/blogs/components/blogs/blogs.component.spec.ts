@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DescriptionBarComponent } from 'src/shared/components/description-bar/description-bar.component';
-import { DataService } from 'src/shared/services/data.service';
+import { BlogService } from 'src/shared/services/blogs.service';
 import { BlogsComponent } from './blogs.component';
 import { ImageService } from 'src/shared/services/image.service';
 import { of } from 'rxjs';
@@ -10,7 +10,7 @@ import { FormatingService } from 'src/shared/services/formating.service';
 describe('BlogsComponent', () => {
   let component: BlogsComponent;
   let fixture: ComponentFixture<BlogsComponent>;
-  let dataService: DataService;
+  let dataService: BlogService;
   let imageService: ImageService;
   let formatService: FormatingService;
   beforeEach(async () => {
@@ -20,13 +20,13 @@ describe('BlogsComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [BlogsComponent, DescriptionBarComponent],
-      providers: [DataService, ImageService, FormatingService],
+      providers: [BlogService, ImageService, FormatingService],
       imports: [HttpClientTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BlogsComponent);
     component = fixture.componentInstance;
-    dataService = TestBed.inject(DataService);
+    dataService = TestBed.inject(BlogService);
     imageService = TestBed.inject(ImageService);
     formatService = TestBed.inject(FormatingService);
 

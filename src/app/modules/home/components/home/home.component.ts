@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { APP_CONSTANTS } from 'src/app/constants/app.constants';
 import { Blogs } from 'src/app/interfaces/blogs.interface';
 import { DashboardDetails } from 'src/app/interfaces/home.interface';
-import { DataService } from 'src/shared/services/data.service';
+import { BlogService } from 'src/shared/services/blogs.service';
+import { DashboardService } from 'src/shared/services/dashboard.service';
 import { FormatingService } from 'src/shared/services/formating.service';
 import { ImageService } from 'src/shared/services/image.service';
 
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
   dashboardDetails: DashboardDetails[];
 
   constructor(
-    private dataService: DataService,
+    private dashboardService: DashboardService,
+    private blogService: BlogService,
     private imageService: ImageService,
     public formatService: FormatingService
   ) {
@@ -29,7 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dashboardDetails = this.dataService.dashboardDetails();
+    this.dashboardDetails = this.dashboardService.dashboardDetails();
     this.getRecentBlogs();
   }
 
@@ -37,19 +39,24 @@ export class HomeComponent implements OnInit {
    * Recent Blogs List
    */
   getRecentBlogs() {
-    this.dataService.blogs().subscribe((posts: any) => {
-      posts.slice(0, 12).map((post: Blogs) => {
-        this.recentBlogPosts.push({
-          title: post.title,
-          description: post.body,
-          image:
-            this.imageService.randomBlogImages()[
-              Math.floor(
-                Math.random() * this.imageService.randomBlogImages().length
-              )
-            ],
+    this.blogService.blogs().subscribe(
+      (posts: any) => {
+        posts.slice(0, 12).map((post: Blogs) => {
+          this.recentBlogPosts.push({
+            title: post.title,
+            description: post.body,
+            image:
+              this.imageService.randomBlogImages()[
+                Math.floor(
+                  Math.random() * this.imageService.randomBlogImages().length
+                )
+              ],
+          });
         });
-      });
-    });
+      },
+      (error: any) => {
+        console.error('An error occurred while fetching blog posts:', error);
+      }
+    );
   }
 }

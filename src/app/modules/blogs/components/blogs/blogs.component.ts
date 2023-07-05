@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/shared/services/data.service';
+import { BlogService } from 'src/shared/services/blogs.service';
 import { FormatingService } from 'src/shared/services/formating.service';
 import { ImageService } from 'src/shared/services/image.service';
 import { Blogs } from '../../../../interfaces/blogs.interface';
@@ -16,7 +16,7 @@ export class BlogsComponent implements OnInit {
   description!: string;
 
   constructor(
-    private dataService: DataService,
+    private blogService: BlogService,
     private imageService: ImageService,
     public formatService: FormatingService
   ) {
@@ -32,20 +32,25 @@ export class BlogsComponent implements OnInit {
    * Get Blog Posts
    */
   getBlogPosts() {
-    this.dataService.blogs().subscribe((blogPosts: Blogs[]) => {
-      blogPosts.slice(0, 15).map((blogPost: Blogs) => {
-        this.blogPosts.push({
-          title: blogPost.title,
-          description: blogPost.body,
-          image:
-            this.imageService.randomBlogImages()[
-              Math.floor(
-                Math.random() * this.imageService.randomBlogImages().length
-              )
-            ],
+    this.blogService.blogs().subscribe(
+      (blogPosts: Blogs[]) => {
+        blogPosts.slice(0, 15).map((blogPost: Blogs) => {
+          this.blogPosts.push({
+            title: blogPost.title,
+            description: blogPost.body,
+            image:
+              this.imageService.randomBlogImages()[
+                Math.floor(
+                  Math.random() * this.imageService.randomBlogImages().length
+                )
+              ],
+          });
         });
-      });
-      this.description = `Total Blogs : ${this.blogPosts.length}`;
-    });
+        this.description = `Total Blogs: ${this.blogPosts.length}`;
+      },
+      (error: any) => {
+        console.error('An error occurred while fetching blog posts:', error);
+      }
+    );
   }
 }

@@ -4,7 +4,7 @@ import { DescriptionBarComponent } from 'src/shared/components/description-bar/d
 
 import { of } from 'rxjs';
 import { MaterialModule } from 'src/shared/modules/material.module';
-import { DataService } from 'src/shared/services/data.service';
+import { BlogService } from 'src/shared/services/blogs.service';
 import { FormatingService } from 'src/shared/services/formating.service';
 import { ImageService } from 'src/shared/services/image.service';
 import { HomeComponent } from './home.component';
@@ -12,7 +12,7 @@ import { HomeComponent } from './home.component';
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  let dataService: DataService;
+  let dataService: BlogService;
   let imageService: ImageService;
   let formatService: FormatingService;
 
@@ -21,13 +21,13 @@ describe('HomeComponent', () => {
     imageService = jasmine.createSpyObj('ImageService', ['randomBlogImages']);
     await TestBed.configureTestingModule({
       declarations: [HomeComponent, DescriptionBarComponent],
-      providers: [DataService, FormatingService, ImageService],
+      providers: [BlogService, FormatingService, ImageService],
       imports: [HttpClientTestingModule, MaterialModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
-    dataService = TestBed.inject(DataService);
+    dataService = TestBed.inject(BlogService);
     imageService = TestBed.inject(ImageService);
     formatService = TestBed.inject(FormatingService);
     fixture.detectChanges();

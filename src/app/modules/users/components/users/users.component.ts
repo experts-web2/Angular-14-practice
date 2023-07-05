@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { APP_CONSTANTS } from 'src/app/constants/app.constants';
 import { Users } from 'src/app/interfaces/users.interface';
-import { DataService } from 'src/shared/services/data.service';
 import { ImageService } from 'src/shared/services/image.service';
+import { UserService } from 'src/shared/services/users.service';
 
 @Component({
   selector: 'app-users',
@@ -26,7 +26,7 @@ export class UsersComponent implements OnInit {
   public appConstants = APP_CONSTANTS;
 
   constructor(
-    private dataService: DataService,
+    private userService: UserService,
     private imageService: ImageService
   ) {
     this.selectedView = APP_CONSTANTS.CARD;
@@ -42,28 +42,33 @@ export class UsersComponent implements OnInit {
    */
   getUsers() {
     this.users = [];
-    this.dataService.users().subscribe((users: Users[]) => {
-      users.forEach((user: Users) => {
-        this.users.push({
-          email: user.email,
-          image:
-            this.imageService.randomUsersAvatar()[
-              Math.floor(
-                Math.random() * this.imageService.randomUsersAvatar().length
-              )
-            ],
-          name: user.name,
-          website: user.website,
-          designation: 'consectetur adipiscing',
-          joining_date: '5 July 2023',
+    this.userService.users().subscribe(
+      (users: Users[]) => {
+        users.forEach((user: Users) => {
+          this.users.push({
+            email: user.email,
+            image:
+              this.imageService.randomUsersAvatar()[
+                Math.floor(
+                  Math.random() * this.imageService.randomUsersAvatar().length
+                )
+              ],
+            name: user.name,
+            website: user.website,
+            designation: 'consectetur adipiscing',
+            joining_date: '5 July 2023',
+          });
         });
-      });
-      this.filteredUsers = this.users;
-      this.dataSource = new MatTableDataSource<Users>(this.users);
-      this.description = `Total ${this.users.length} ${
-        this.users.length > 1 ? 'users' : 'user'
-      }`;
-    });
+        this.filteredUsers = this.users;
+        this.dataSource = new MatTableDataSource<Users>(this.users);
+        this.description = `Total ${this.users.length} ${
+          this.users.length > 1 ? 'users' : 'user'
+        }`;
+      },
+      (error: any) => {
+        console.error('An error occurred while fetching users:', error);
+      }
+    );
   }
 
   /**
