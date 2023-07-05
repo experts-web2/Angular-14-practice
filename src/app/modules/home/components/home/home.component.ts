@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
    */
   getRecentBlogs() {
     this.dataService.blogs().subscribe((posts: any) => {
-      posts.slice(0, 10).map((post: Blogs) => {
+      posts.slice(0, 12).map((post: Blogs) => {
         this.recentBlogPosts.push({
           title: post.title,
           description: post.body,

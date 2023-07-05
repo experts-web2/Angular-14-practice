@@ -33,7 +33,7 @@ export class BlogsComponent implements OnInit {
    */
   getBlogPosts() {
     this.dataService.blogs().subscribe((blogPosts: Blogs[]) => {
-      blogPosts.slice(0, 12).map((blogPost: Blogs) => {
+      blogPosts.slice(0, 15).map((blogPost: Blogs) => {
         this.blogPosts.push({
           title: blogPost.title,
           description: blogPost.body,
