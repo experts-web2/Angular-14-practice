@@ -1,21 +1,23 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { AfterContentInit, ChangeDetectorRef, Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass'],
 })
-export class AppComponent {
+export class AppComponent implements AfterContentInit {
   sidabrOpenClose = true;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor() {}
+
+  ngAfterContentInit() {
+    this.adjustWindowSize();
+  }
 
   /**
-   * Adjust window Size on changing screen
-   * @param isSideBarOpen
+   * Adjust WIndow Size
    */
-  onWindowSizeAdjust(isSideBarOpen: boolean) {
-    this.sidabrOpenClose = isSideBarOpen;
-    this.cdr.detectChanges();
+  adjustWindowSize() {    
+    this.sidabrOpenClose = window.innerWidth <= 768 ? false : true;
   }
 }

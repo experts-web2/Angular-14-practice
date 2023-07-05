@@ -29,8 +29,18 @@ table
     margin: 16px 0
     display: block
 
+  tr th
+      background: $white-color !important
+      color: $font-color
+      border-top: 1px solid $background-color
+      border-bottom: 1px solid $background-color
+
   tr:nth-child(odd) td.mat-cell
+    background: $background-color !important
+    color: $primary-color
+  tr:nth-child(even) td.mat-cell
     background: $white-color !important
+    color: $primary-color
 
   tr td.mat-cell
     .user-name
@@ -40,6 +50,7 @@ table
       display: flex
       align-items: center
       color: $primary-color
+      
 
 .table-scroll
   width: 100%
