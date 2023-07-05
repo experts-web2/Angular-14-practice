@@ -3,4 +3,6 @@ export interface Users {
   email: string;
   name: string;
   website: string;
+  designation? :string;
+  joining_date?:string;
 }

@@ -14,7 +14,12 @@ export class UsersComponent implements OnInit {
   public selectedView: string;
   public heading: string;
   public description!: string;
-  public displayedColumns: string[] = ['image', 'name', 'email', 'website'];
+  public displayedColumns: string[] = [
+    'image',
+    'name',
+    'designation',
+    'joining_date',
+  ];
   public users: Users[] = [];
   public filteredUsers: Users[] = [];
   public dataSource!: MatTableDataSource<Users>;
@@ -49,6 +54,8 @@ export class UsersComponent implements OnInit {
             ],
           name: user.name,
           website: user.website,
+          designation: 'consectetur adipiscing',
+          joining_date: '5 July 2023',
         });
       });
       this.filteredUsers = this.users;
