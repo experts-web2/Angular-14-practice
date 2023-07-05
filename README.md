@@ -1,19 +1,31 @@
 # Angular-14-practice
 Sample Angular Application using Material-UI
 
+# Project Structure
 Project contains different folders, out of which main folders are 
+
 •	Styles
+
 •	App
+
 •	Shared
+
 •	Services
+
+![image](https://github.com/experts-web2/Angular-14-practice/assets/50547433/2bf6ea57-760a-402a-9d69-05f46b04b21e)
+
 # Styles
 This folder contains global styles, like primary color, background color and any other global css settings can be placed here
 
 # Shared
 This folder contains 3 folders
+
 •	Components
+
 •	Modules
+
 •	Services
+
 
 # Components
 This folder contains 2 shared components
@@ -24,16 +36,21 @@ This folder contains 2 shared components
 It has 2 modules
 1.	Material Module
 2.	Shared Module
+
 Material Module contains all references of Material UI modules. So our application will consume Material Module everywhere, instead of adding reference of Material UI module in each module
 
 Shared Module contains shared components like Header and Description Bar
+
 # Services
 This folder contains 3 types of services
 1.	DataService
 2.	ImageService
 3.	FormatingService
+
 DataService is responsible for handling API calls. It can contain many child services based on our Modules like Users and Blogs
+
 ImageService deals with Images
+
 FormatingService deals with Text handling
 
 
