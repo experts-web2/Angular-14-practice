@@ -31,7 +31,6 @@ export class ImageService {
       'https://i.ibb.co/SyTLZ8X/Best-Blogging-Platforms-featured-image.png',
       'https://i.ibb.co/Hg5R5d3/download.jpg',
       'https://i.ibb.co/cxCr8Xt/website-blog.jpg',
-      'https://i.ibb.co/d0sdmbC/ddddd.jpg',
       'https://i.ibb.co/v4vxGqV/wix.webp',
     ];
   }

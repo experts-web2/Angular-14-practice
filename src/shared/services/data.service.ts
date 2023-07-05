@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { API_URL } from 'src/app/constants/api-base-url';
+import { Blogs } from 'src/app/interfaces/blogs.interface';
+import { HOME_DASHBHBOARD_DETAILS } from 'src/app/interfaces/home.interface';
+import { Users } from 'src/app/interfaces/user.interface';
 
 @Injectable()
 export class DataService {
@@ -10,31 +14,23 @@ export class DataService {
    * Get Blogs List
    * @returns
    */
-  blogs() {
-    return this.http.get(API_URL.base + API_URL.posts);
+  blogs(): Observable<Blogs[]> {
+    return this.http.get<Blogs[]>(API_URL.base + API_URL.posts);
   }
 
   /**
    * Get Users List
    * @returns
    */
-  users() {
-    return this.http.get(API_URL.base + API_URL.users);
-  }
-
-  /**
-   * Get Photos List
-   * @returns
-   */
-  photos() {
-    return this.http.get(API_URL.base + API_URL.photos);
+  users(): Observable<Users[]> {
+    return this.http.get<Users[]>(API_URL.base + API_URL.users);
   }
 
   /**
    * Get Dashbaord Details
    * @returns
    */
-  dashboardDetails() {
+  dashboardDetails(): HOME_DASHBHBOARD_DETAILS[] {
     return [
       { title: 'Total Orders', price: 111, icon: 'shopping_cart' },
       { title: 'Total Expenses', price: 222, icon: 'account_balance_wallet' },

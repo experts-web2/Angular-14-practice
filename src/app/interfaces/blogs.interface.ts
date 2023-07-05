@@ -1,4 +1,4 @@
-export interface BLOG_POST {
+export interface Blogs {
   userId?: number;
   id?: number;
   title?: string;

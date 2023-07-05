@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { APP_CONSTANTS } from 'src/app/constants/app.constants';
-import { USER } from 'src/app/interfaces/user.interface';
+import { Users } from 'src/app/interfaces/user.interface';
 import { DataService } from 'src/shared/services/data.service';
 import { ImageService } from 'src/shared/services/image.service';
 
@@ -15,9 +15,9 @@ export class UsersComponent implements OnInit {
   public heading: string;
   public description!: string;
   public displayedColumns: string[] = ['image', 'name', 'email', 'website'];
-  public users: USER[] = [];
-  public filteredUsers: USER[] = [];
-  public dataSource!: MatTableDataSource<USER>;
+  public users: Users[] = [];
+  public filteredUsers: Users[] = [];
+  public dataSource!: MatTableDataSource<Users>;
   public appConstants = APP_CONSTANTS;
 
   constructor(
@@ -37,8 +37,8 @@ export class UsersComponent implements OnInit {
    */
   getUsers() {
     this.users = [];
-    this.dataService.users().subscribe((users: any) => {
-      users.forEach((user: USER) => {
+    this.dataService.users().subscribe((users: Users[]) => {
+      users.forEach((user: Users) => {
         this.users.push({
           email: user.email,
           image:
@@ -52,7 +52,7 @@ export class UsersComponent implements OnInit {
         });
       });
       this.filteredUsers = this.users;
-      this.dataSource = new MatTableDataSource<USER>(this.users);
+      this.dataSource = new MatTableDataSource<Users>(this.users);
       this.description = `Total ${this.users.length} ${
         this.users.length > 1 ? 'users' : 'user'
       }`;
@@ -67,14 +67,14 @@ export class UsersComponent implements OnInit {
     const searchValue: string = (
       event.target as HTMLInputElement
     ).value.toLocaleLowerCase();
-    this.users = this.filteredUsers.filter((searchData: USER) => {
+    this.users = this.filteredUsers.filter((searchData: Users) => {
       return (
-        searchData.name.toLocaleLowerCase().match(searchValue) ||
         searchData.email.toLocaleLowerCase().match(searchValue) ||
-        searchData.website.toLocaleLowerCase().match(searchValue)
+        searchData.website.toLocaleLowerCase().match(searchValue) ||
+        searchData.name.toLocaleLowerCase().match(searchValue)
       );
     });
-    this.dataSource = new MatTableDataSource<USER>(this.users);
+    this.dataSource = new MatTableDataSource<Users>(this.users);
   }
 
   /**
@@ -87,7 +87,7 @@ export class UsersComponent implements OnInit {
     } else {
       this.users = [];
       this.users = this.filteredUsers.slice(0, event.target.value);
-      this.dataSource = new MatTableDataSource<USER>(this.users);
+      this.dataSource = new MatTableDataSource<Users>(this.users);
     }
   }
 

@@ -1,11 +1,12 @@
 <div class="container-fluid">
-  <app-header></app-header>
+  <mat-icon class="togle-btn" (click)="drawer.toggle()">reorder</mat-icon>
+  <app-header (onWindowSizeAdjust)="onWindowSizeAdjust($event)"></app-header>
   <mat-drawer-container autosize>
     <mat-drawer
       #drawer
       class="sidenav"
       mode="side"
-      [opened]="true"
+      [opened]="sidabrOpenClose"
       id="sidenav"
     >
       <h2 class="sidenav__title">Menu</h2>

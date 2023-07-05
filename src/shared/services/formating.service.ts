@@ -5,6 +5,6 @@ export class FormatingService {
   constructor() {}
 
   titleFormat(title: string | undefined) {
-    return title?.length ? title.substring(0, 20) : '';
+    return title?.length ? title.substring(0, 17) : '';
   }
 }

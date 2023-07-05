@@ -4,10 +4,10 @@
   (onModeChange)="changeGridView($event)"
 ></app-description-bar>
 
-<app-user-card
+<app-user-avatar
   *ngIf="selectedView === appConstants.CARD && users.length"
   [users]="users"
-></app-user-card>
+></app-user-avatar>
 
 <mat-card
   class="table-card"
@@ -40,7 +40,7 @@
             <mat-icon matSuffix>search</mat-icon>
           </span>
           <input
-            placeholder=""
+            placeholder="Enter Name, Website Address or Email"
             (keyup)="search($event)"
             matInput
             class="table-card__search__field"

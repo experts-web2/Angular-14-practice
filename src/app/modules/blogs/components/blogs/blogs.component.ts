@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/shared/services/data.service';
 import { FormatingService } from 'src/shared/services/formating.service';
 import { ImageService } from 'src/shared/services/image.service';
-import { BLOG_POST } from '../../../../interfaces/blogs.interface';
+import { Blogs } from '../../../../interfaces/blogs.interface';
 import { APP_CONSTANTS } from 'src/app/constants/app.constants';
 
 @Component({
@@ -11,7 +11,7 @@ import { APP_CONSTANTS } from 'src/app/constants/app.constants';
   styleUrls: ['./blogs.component.sass'],
 })
 export class BlogsComponent implements OnInit {
-  blogPosts: BLOG_POST[];
+  blogPosts: Blogs[];
   heading: string;
   description!: string;
 
@@ -32,8 +32,8 @@ export class BlogsComponent implements OnInit {
    * Get Blog Posts
    */
   getBlogPosts() {
-    this.dataService.blogs().subscribe((blogPosts: any) => {
-      blogPosts.map((blogPost: BLOG_POST) => {
+    this.dataService.blogs().subscribe((blogPosts: Blogs[]) => {
+      blogPosts.slice(0, 12).map((blogPost: Blogs) => {
         this.blogPosts.push({
           title: blogPost.title,
           description: blogPost.body,

@@ -26,8 +26,10 @@
   <app-description-bar [heading]="'Recent Blogs'"></app-description-bar>
   <mat-card-content fxFlex>
     <div class="blog-post" *ngFor="let post of recentBlogPosts">
-      <img mat-card-image [src]="post.image" alt="Photo of {{ post.title }}" />
-      <h2 class="blog-post__title">{{ post.title | titlecase }}</h2>
+      <img mat-card-image [src]="post.image" alt="{{ post.title }}" />
+      <h2 class="blog-post__title">
+        {{ formatService.titleFormat(post.title) | titlecase }}
+      </h2>
       <p class="blog-post__detail">
         {{ post.description | titlecase }}
       </p>
