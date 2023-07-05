@@ -1,6 +1,5 @@
 <div class="container-fluid">
-  <mat-icon class="togle-btn" (click)="drawer.toggle()">reorder</mat-icon>
-  <app-header></app-header>
+  <app-header (toogleDrawer)="drawer.toggle()"></app-header>
   <mat-drawer-container autosize>
     <mat-drawer
       #drawer

@@ -12,8 +12,13 @@ import {
 })
 export class HeaderComponent implements OnInit {
   title = 'NIBRAS';
+  @Output() toogleDrawer = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  toggle(){
+    this.toogleDrawer.emit();
+  }
 }
