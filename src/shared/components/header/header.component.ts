@@ -1,24 +1,22 @@
-import {
-  AfterContentInit,
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.sass'],
 })
 export class HeaderComponent implements OnInit {
-  title = 'NIBRAS';
+  title = 'NIBRAS iNNOVATEQ';
+
   @Output() toogleDrawer = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  toggle(){
+  /**
+   * Toogle Drawer to hide or show side menu
+   */
+  toggle() {
     this.toogleDrawer.emit();
   }
 }

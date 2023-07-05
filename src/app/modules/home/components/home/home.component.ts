@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { APP_CONSTANTS } from 'src/app/constants/app.constants';
 import { Blogs } from 'src/app/interfaces/blogs.interface';
-import { HOME_DASHBHBOARD_DETAILS } from 'src/app/interfaces/home.interface';
+import { DashboardDetails } from 'src/app/interfaces/home.interface';
 import { DataService } from 'src/shared/services/data.service';
 import { FormatingService } from 'src/shared/services/formating.service';
 import { ImageService } from 'src/shared/services/image.service';
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   heading: string;
   description: string;
   recentBlogPosts: Blogs[];
-  dashboardDetails: HOME_DASHBHBOARD_DETAILS[];
+  dashboardDetails: DashboardDetails[];
 
   constructor(
     private dataService: DataService,

@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_URL } from 'src/app/constants/api-base-url';
 import { Blogs } from 'src/app/interfaces/blogs.interface';
-import { HOME_DASHBHBOARD_DETAILS } from 'src/app/interfaces/home.interface';
-import { Users } from 'src/app/interfaces/user.interface';
+import { DashboardDetails } from 'src/app/interfaces/home.interface';
+import { Users } from 'src/app/interfaces/users.interface';
 
 @Injectable()
 export class DataService {
@@ -30,7 +30,7 @@ export class DataService {
    * Get Dashbaord Details
    * @returns
    */
-  dashboardDetails(): HOME_DASHBHBOARD_DETAILS[] {
+  dashboardDetails(): DashboardDetails[] {
     return [
       { title: 'Total Orders', price: 111, icon: 'shopping_cart' },
       { title: 'Total Expenses', price: 222, icon: 'account_balance_wallet' },

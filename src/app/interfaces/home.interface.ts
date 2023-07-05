@@ -1,4 +1,4 @@
-export interface HOME_DASHBHBOARD_DETAILS {
+export interface DashboardDetails {
   title: string;
   price: number;
   icon: string;

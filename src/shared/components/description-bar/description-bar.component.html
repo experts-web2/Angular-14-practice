@@ -2,7 +2,10 @@
   <mat-card-header>
     <mat-card-title>
       <div class="card-title">
-        <span><mat-icon class="mat-card-title-icon">widgets</mat-icon>{{ heading }}</span>
+        <span
+          ><mat-icon class="mat-card-title-icon">widgets</mat-icon
+          >{{ heading }}</span
+        >
         <mat-button-toggle-group *ngIf="heading === appConstants.USERS">
           <mat-button-toggle
             [ngClass]="defaultView === appConstants.LIST ? 'active' : ''"

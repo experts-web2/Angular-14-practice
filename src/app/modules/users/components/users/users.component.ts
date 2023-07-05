@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { APP_CONSTANTS } from 'src/app/constants/app.constants';
-import { Users } from 'src/app/interfaces/user.interface';
+import { Users } from 'src/app/interfaces/users.interface';
 import { DataService } from 'src/shared/services/data.service';
 import { ImageService } from 'src/shared/services/image.service';
 
@@ -88,12 +88,13 @@ export class UsersComponent implements OnInit {
    * Show ALL or selected number enteries
    * @param event
    */
-  showEntries(event: any) {
-    if (event.target.value === APP_CONSTANTS.ALL) {
+  showEntries(event: Event) {
+    this.users = [];
+    const value = (event.target as HTMLInputElement)?.value;
+    if (value === APP_CONSTANTS.ALL) {
       this.getUsers();
     } else {
-      this.users = [];
-      this.users = this.filteredUsers.slice(0, event.target.value);
+      this.users = this.filteredUsers.slice(0, Number(value));
       this.dataSource = new MatTableDataSource<Users>(this.users);
     }
   }
@@ -107,7 +108,7 @@ export class UsersComponent implements OnInit {
   }
 
   /**
-   * Filter enteries and return specific numbers of records
+   * Filter enteries and return records numbers
    * @param length
    * @returns
    */

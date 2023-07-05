@@ -1,23 +1,17 @@
-import { AfterContentInit, ChangeDetectorRef, Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass'],
 })
-export class AppComponent implements AfterContentInit {
+export class AppComponent {
+  constructor() {}
+  
   sidabrOpenClose = true;
 
-  constructor() {}
-
-  ngAfterContentInit() {
-    this.adjustWindowSize();
-  }
-
-  /**
-   * Adjust WIndow Size
-   */
-  adjustWindowSize() {    
+  @HostListener('window:resize', ['$event'])
+  onResize() {
     this.sidabrOpenClose = window.innerWidth <= 768 ? false : true;
   }
 }
