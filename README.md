@@ -12,7 +12,8 @@ Project contains different folders, out of which main folders are
 
 •	Services
 
-![image](https://github.com/experts-web2/Angular-14-practice/assets/50547433/2bf6ea57-760a-402a-9d69-05f46b04b21e)
+![image](https://github.com/experts-web2/Angular-14-practice/assets/50547433/d6075096-7b98-4b95-96c7-87bdd5215321)
+
 
 # Styles
 This folder contains global styles, like primary color, background color and any other global css settings can be placed here
@@ -42,15 +43,18 @@ Material Module contains all references of Material UI modules. So our applicati
 Shared Module contains shared components like Header and Description Bar
 
 # Services
-This folder contains 3 types of services
-1.	DataService
+This folder contains 5 types of services
+1.	BlogService
 2.	ImageService
 3.	FormatingService
+4.	DashboardService
+5.	UserService
 
-DataService is responsible for handling API calls. It can contain many child services based on our Modules like Users and Blogs
 
+BlogService deals with Blogs
+UserService deals with Users
+DashboardService deals with Home -> Dashboard Details
 ImageService deals with Images
-
 FormatingService deals with Text handling
 
 
@@ -65,6 +69,9 @@ This folder contains files having Constants related to API, App and Routes
 This folder contains files for our Business entities like Users, Blogs etc.
 # Modules
 Each Business entity is treated as a separate Module, to keep things separate and easy to manage. Also will help us out in performance optimization using Lazy Loading etc
+# Unit Test
+Each Component have unit test cases written in jasmine
+
 
 
 
