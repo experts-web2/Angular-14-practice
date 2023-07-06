@@ -6,6 +6,8 @@ import { BlogsComponent } from './blogs.component';
 import { ImageService } from 'src/shared/services/image.service';
 import { of } from 'rxjs';
 import { FormatingService } from 'src/shared/services/formating.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MaterialModule } from 'src/shared/modules/material.module';
 
 describe('BlogsComponent', () => {
   let component: BlogsComponent;
@@ -21,7 +23,7 @@ describe('BlogsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [BlogsComponent, DescriptionBarComponent],
       providers: [BlogService, ImageService, FormatingService],
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule,MatIconModule,MaterialModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BlogsComponent);
@@ -42,14 +44,14 @@ describe('BlogsComponent', () => {
       { title: 'Test Blog 1', body: 'Test Body 1' },
       { title: 'Test Blog 2', body: 'Test Body 2' },
     ];
-    (dataService.blogs as jasmine.Spy).and.returnValue(of(mockPosts));
+    spyOn(dataService, 'blogs').and.returnValue(of(mockPosts));
 
     const mockImages = [
       'https://i.ibb.co/SyTLZ8X/Best-Blogging-Platforms-featured-image.png',
       'https://i.ibb.co/Hg5R5d3/download.jpg',
       'https://i.ibb.co/cxCr8Xt/website-blog.jpg',
     ];
-    (imageService.randomBlogImages as jasmine.Spy).and.returnValue(mockImages);
+    spyOn(imageService, 'randomBlogImages').and.returnValue(mockImages);
 
     component.getBlogPosts();
 
@@ -62,7 +64,7 @@ describe('BlogsComponent', () => {
     if (firstPostImage) {
       expect(mockImages).toContain(firstPostImage);
     }
-    const expectedDescription = `Total Blogs : ${component.blogPosts.length}`;
+    const expectedDescription = `Total Blogs: ${component.blogPosts.length}`;
     expect(component.description).toBe(expectedDescription);
   });
 });

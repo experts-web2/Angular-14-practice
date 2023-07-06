@@ -8,6 +8,7 @@ import { BlogService } from 'src/shared/services/blogs.service';
 import { FormatingService } from 'src/shared/services/formating.service';
 import { ImageService } from 'src/shared/services/image.service';
 import { HomeComponent } from './home.component';
+import { DashboardService } from 'src/shared/services/dashboard.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -21,7 +22,12 @@ describe('HomeComponent', () => {
     imageService = jasmine.createSpyObj('ImageService', ['randomBlogImages']);
     await TestBed.configureTestingModule({
       declarations: [HomeComponent, DescriptionBarComponent],
-      providers: [BlogService, FormatingService, ImageService],
+      providers: [
+        BlogService,
+        FormatingService,
+        ImageService,
+        DashboardService,
+      ],
       imports: [HttpClientTestingModule, MaterialModule],
     }).compileComponents();
 
@@ -37,24 +43,29 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should populate recentBlogPosts with the latest 10 blog posts', () => {
+  it('should populate recentBlogPosts with the latest 2 blog posts', () => {
     const mockPosts = [
-      { title: 'Test Blog 1', body: 'Test Body 1' },
-      { title: 'Test Blog 2', body: 'Test Body 2' },
+      {
+        title: 'Test Blog 1',
+        body: 'Test Body 1',
+      },
+      {
+        title: 'Test Blog 2',
+        body: 'Test Body 2',
+      },
     ];
-    (dataService.blogs as jasmine.Spy).and.returnValue(of(mockPosts));
+    spyOn(dataService, 'blogs').and.returnValue(of(mockPosts));
 
     const mockImages = [
       'https://i.ibb.co/SyTLZ8X/Best-Blogging-Platforms-featured-image.png',
       'https://i.ibb.co/Hg5R5d3/download.jpg',
       'https://i.ibb.co/cxCr8Xt/website-blog.jpg',
     ];
-    (imageService.randomBlogImages as jasmine.Spy).and.callFake(
-      () => mockImages
-    );
+    spyOn(imageService, 'randomBlogImages').and.callFake(() => mockImages);
+
     component.getRecentBlogs();
 
-    expect(component.recentBlogPosts.length).toBe(10);
+    expect(component.recentBlogPosts.length).toBe(2);
     expect(component.recentBlogPosts[0].title).toBe(mockPosts[0].title);
     expect(component.recentBlogPosts[0].description).toBe(mockPosts[0].body);
     const firstPostImage = component.recentBlogPosts[0].image;
