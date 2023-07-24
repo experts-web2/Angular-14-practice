@@ -1,9 +1,10 @@
+import { DatePipe } from '@angular/common'; // Import the DatePipe
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subject, takeUntil } from 'rxjs';
 import { APP_CONSTANTS } from 'src/app/constants/app.constants';
-import { Users } from 'src/app/interfaces/users.interface';
-import { ImageService } from 'src/shared/services/image.service';
-import { UserService } from 'src/shared/services/users.service';
+import { Users } from 'src/app/modules/users/interfaces/users.interface';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-users',
@@ -24,11 +25,9 @@ export class UsersComponent implements OnInit {
   public filteredUsers: Users[] = [];
   public dataSource!: MatTableDataSource<Users>;
   public appConstants = APP_CONSTANTS;
+  private unsubscribe$ = new Subject();
 
-  constructor(
-    private userService: UserService,
-    private imageService: ImageService
-  ) {
+  constructor(private userService: UserService, private datePipe: DatePipe) {
     this.selectedView = APP_CONSTANTS.CARD;
     this.heading = APP_CONSTANTS.USERS;
   }
@@ -40,42 +39,45 @@ export class UsersComponent implements OnInit {
   /**
    * Get Users List
    */
-  getUsers() {
+  getUsers(): void {
     this.users = [];
-    this.userService.users().subscribe(
-      (users: Users[]) => {
-        users.forEach((user: Users) => {
-          this.users.push({
-            email: user.email,
-            image:
-              this.imageService.randomUsersAvatar()[
-                Math.floor(
-                  Math.random() * this.imageService.randomUsersAvatar().length
-                )
-              ],
-            name: user.name,
-            website: user.website,
-            designation: 'consectetur adipiscing',
-            joining_date: '5 July 2023',
+    this.userService
+      .users()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (users: Users[]) => {
+          users.forEach((user: Users) => {
+            this.users.push({
+              email: user.email,
+              image:
+                this.userService.randomUsersAvatar()[
+                  Math.floor(
+                    Math.random() * this.userService.randomUsersAvatar().length
+                  )
+                ],
+              name: user.name,
+              website: user.website,
+              designation: APP_CONSTANTS.DESIGNATION,
+              joining_date: this.datePipe.transform(new Date(), 'longDate'),
+            });
           });
-        });
-        this.filteredUsers = this.users;
-        this.dataSource = new MatTableDataSource<Users>(this.users);
-        this.description = `Total ${this.users.length} ${
-          this.users.length > 1 ? 'users' : 'user'
-        }`;
-      },
-      (error: any) => {
-        console.error('An error occurred while fetching users:', error);
-      }
-    );
+          this.filteredUsers = this.users;
+          this.dataSource = new MatTableDataSource<Users>(this.users);
+          this.description = `${APP_CONSTANTS.TOTAL} ${this.users.length} ${
+            this.users.length > 1 ? APP_CONSTANTS.USERS : APP_CONSTANTS.USER
+          }`;
+        },
+        error: (error) => {
+          console.error(APP_CONSTANTS.ERROR, error);
+        },
+      });
   }
 
   /**
    * Search For User
    * @param event
    */
-  search(event: KeyboardEvent) {
+  search(event: KeyboardEvent): void {
     const searchValue: string = (
       event.target as HTMLInputElement
     ).value.toLocaleLowerCase();
@@ -93,7 +95,7 @@ export class UsersComponent implements OnInit {
    * Show ALL or selected number enteries
    * @param event
    */
-  showEntries(event: Event) {
+  showEntries(event: Event): void {
     this.users = [];
     const value = (event.target as HTMLInputElement)?.value;
     if (value === APP_CONSTANTS.ALL) {
@@ -108,7 +110,7 @@ export class UsersComponent implements OnInit {
    * Grid View Change
    * @param mode
    */
-  changeGridView(mode: string) {
+  changeGridView(mode: string): void {
     this.selectedView = mode;
   }
 
@@ -117,7 +119,12 @@ export class UsersComponent implements OnInit {
    * @param length
    * @returns
    */
-  filterEnterties(length: number) {
+  filterEnterties(length: number): number[] {
     return new Array(length);
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.complete();
   }
 }

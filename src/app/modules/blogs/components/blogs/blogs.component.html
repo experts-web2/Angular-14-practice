@@ -6,17 +6,14 @@
   <mat-card *ngFor="let blog of blogPosts">
     <div class="blog">
       <div class="blog__image-wrapper">
-        <img
-          class="blog__image-wrapper__pic"
-          [src]="blog.image"
-        />
+        <img class="blog__image-wrapper__pic" [src]="blog.image" />
       </div>
       <div class="card-description">
         <h2 class="card-description__title" [title]="blog.title">
-          {{ formatService.titleFormat(blog.title) | titlecase }}
+          {{ blog.title | titlecase | shortTitle }}
         </h2>
         <p class="card-description__detail">
-          {{ blog.description }}
+          {{ blog.body }}
         </p>
         <a class="card-description__link">Read More</a>
         <div class="card-description__icon-wrapper">

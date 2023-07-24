@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Users } from 'src/app/interfaces/users.interface';
+import { Users } from 'src/app/modules/users/interfaces/users.interface';
 
 @Component({
   selector: 'app-user-avatar',

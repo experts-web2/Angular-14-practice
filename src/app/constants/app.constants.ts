@@ -6,4 +6,9 @@ export const APP_CONSTANTS = {
   ALL: 'All',
   Home: 'Home',
   HOME_PAGE_DESCRIPTION: 'Home page description',
+  DESIGNATION: 'Consectetur Adipiscing',
+  TOTAL:'Total',
+  JOINING_DATE:'5 July 2023',
+  ERROR:'An Error has been occured',
+  USER:'User'
 };

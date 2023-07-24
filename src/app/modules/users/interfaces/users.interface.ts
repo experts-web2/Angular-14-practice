@@ -4,5 +4,5 @@ export interface Users {
   name: string;
   website: string;
   designation? :string;
-  joining_date?:string;
+  joining_date?:string | null;
 }

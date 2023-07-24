@@ -11,14 +11,14 @@
   .mat-card
     background: $white-color
     margin-bottom: 0px
-    padding-top: 15px
-    height: 340px
+    padding: 31px 15px
+    height: 278px
     @media screen and (max-width: 1024px)
       height: auto
 
     .blog
       display: grid
-      grid-template-columns: 48% auto
+      grid-template-columns: auto 49% 
       grid-gap: 20px
       grid-template-rows: auto
       height: 100%
@@ -31,7 +31,7 @@
       &__image-wrapper
         width: auto
         height: 100%
-        padding: 0 0 0 15px
+        padding: 0 
         @media screen and (max-width: 1200px)
           padding: 0 15px
 
@@ -40,7 +40,10 @@
           width: 100%
 
       .card-description
-        padding: 0 15px 0 0
+        padding: 0
+        display: flex
+        flex-direction: column
+        justify-content: space-between
         @media screen and (max-width: 1200px)
           padding: 0 15px
 
@@ -54,7 +57,7 @@
           margin: 0 0 13px 0
           overflow: hidden
           text-overflow: ellipsis
-          height: 100px
+          white-space: nowrap
           @media screen and (max-width: 1024px)
             height: 50px
 
@@ -64,7 +67,6 @@
           line-height: 19px
           text-align: justify
           color: $font-color
-          height: 150px
           overflow: hidden
           text-overflow: ellipsis
 
